@@ -1,0 +1,47 @@
+/* Mobile first */
+body {
+    display: flex; /* Tous les enfants de body se mettent côte à côte */
+    min-height: 100vh; /* Tous les enfants de body prennent 100vh de sa taille */
+    flex-direction: column; /* Les enfants passent à être un au dessus de l'autre */
+    margin: 0; /* Tous les élémnts sont collés au bord du body */
+}
+
+#main {
+    display: flex; /* On souhaite pouvoir bouger les enfants, alors on met la propriété display: flex à main qu'est le parent. Par défaut les enfants se mettent en ligne */
+    flex: 1; /* Rend l'élément flexible, ici avec flex 1, la div va prendre tout l'espace disponible entre le header et le footer*/
+    flex-direction: column; /* Les enfants se positionnent en colonne */
+}
+
+#main > article {
+    flex: 1; /* équivalent à flex-grow: 1 flex-shrink: 1 flex-basis: 0 */
+    border: 1px solid yellow; /* L'article prend la plupart de la place disponible de son parent*/
+}
+
+#main > nav,
+#main > aside {
+    background: #00CC99; /* Couleur de fond juste sur les éléments nav et aside */
+}
+
+#main > nav {
+    order: -1; /* L'élément a un order 0, alors avec -1 il prendra la place de l'élémént avant lui, si c'était 1, celui d'après */
+}
+
+header, footer {
+    background: #6600FF; /* Couleur de fond des éléments header et footer */
+    height: 20vh; /* Ils prennent 20vh de la hauteur du body */
+}
+
+header, footer, article, nav, aside {
+    padding: 1em; /* On met un peu d'espace à l'intérieur de la boîte de chaque élémént */
+}
+
+/* Responsivité change à partir de 576px */
+@media screen and (min-width: 576px) {
+    #main {
+        flex-direction: row; /* Les éléments nav, article et aside se mettent côte à côte */
+    }
+    #main > nav,
+    #main > aside {
+        flex: 0 0 20vw; /* Les éléments prennent 20vw de largeur, l'article reste ave 60vw */
+    }
+}
